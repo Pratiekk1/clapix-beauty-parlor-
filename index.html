@@ -998,5 +998,125 @@ function tog(head,id){
 <script>
   <!-- Globe ka poora JS code yahan paste karo -->
 </script>
+  <!-- CLAPIX GLOBE SECTION -->
+<section style="text-align:center;padding:3rem 1rem;background:var(--bg);border-top:1px solid var(--bdr)">
+  <div class="ey">Global Reach</div>
+  <div class="stitle" style="text-align:center;margin-bottom:1.5rem">Worldwide Digital Presence</div>
+  <div style="position:relative;width:560px;max-width:100%;margin:0 auto">
+    <canvas id="gc" width="500" height="500" style="display:block;margin:0 auto;cursor:grab;max-width:100%"></canvas>
+    <svg style="position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none" viewBox="0 0 560 560">
+      <line x1="20" y1="20" x2="55" y2="20" stroke="#f0c84a" stroke-width="1.5"/><line x1="20" y1="20" x2="20" y2="55" stroke="#f0c84a" stroke-width="1.5"/>
+      <line x1="540" y1="20" x2="505" y2="20" stroke="#f0c84a" stroke-width="1.5"/><line x1="540" y1="20" x2="540" y2="55" stroke="#f0c84a" stroke-width="1.5"/>
+      <line x1="20" y1="540" x2="55" y2="540" stroke="#f0c84a" stroke-width="1.5"/><line x1="20" y1="540" x2="20" y2="505" stroke="#f0c84a" stroke-width="1.5"/>
+      <line x1="540" y1="540" x2="505" y2="540" stroke="#f0c84a" stroke-width="1.5"/><line x1="540" y1="540" x2="540" y2="505" stroke="#f0c84a" stroke-width="1.5"/>
+      <circle cx="280" cy="280" r="252" fill="none" stroke="#d4a843" stroke-width="0.4" stroke-dasharray="3,15" opacity="0.3"/>
+      <g id="gsc"><circle cx="280" cy="280" r="252" fill="none" stroke="#f0c84a" stroke-width="1" stroke-dasharray="42,462" opacity="0.45"/></g>
+      <g font-family="monospace" fill="#d4a843" opacity="0.5">
+        <text x="28" y="36" font-size="8">CLAPIX.SYS</text><text x="28" y="47" font-size="7" opacity=".7">NAGPUR · INDIA</text>
+        <text x="450" y="36" font-size="8">LAT: 21.15N</text><text x="450" y="47" font-size="7" opacity=".7">LON: 79.08E</text>
+      </g>
+      <g id="gpin">
+        <circle cx="364" cy="252" r="5" fill="none" stroke="#f0c84a" stroke-width="1.3"/>
+        <circle cx="364" cy="252" r="2" fill="#f0c84a"/>
+        <line x1="369" y1="248" x2="392" y2="230" stroke="#f0c84a" stroke-width="0.8"/>
+        <rect x="392" y="217" width="94" height="26" fill="#010b10" stroke="#d4a843" stroke-width="0.7" rx="2" opacity="0.93"/>
+        <text x="398" y="228" font-family="monospace" font-size="8" fill="#f0c84a">NAGPUR HQ</text>
+        <text x="398" y="238" font-family="monospace" font-size="6.5" fill="#d4a84399">21°N · 79°E · INDIA</text>
+      </g>
+      <g id="gpu"><circle cx="364" cy="252" r="11" fill="none" stroke="#f0c84a" stroke-width="0.8" opacity="0.3"/></g>
+    </svg>
+  </div>
+  <div style="display:flex;align-items:center;justify-content:center;gap:10px;margin-top:10px;flex-wrap:wrap">
+    <span style="font-family:monospace;font-size:10px;color:#d4a843">SPEED</span>
+    <input type="range" id="gspd" min="0" max="5" step="0.1" value="0.8" style="accent-color:#d4a843;width:80px">
+    <button onclick="gtog()" style="font-family:monospace;font-size:10px;color:#d4a843;background:none;border:1px solid #d4a84344;padding:3px 12px;cursor:pointer">PAUSE</button>
+  </div>
+  <div style="font-family:monospace;font-size:9px;color:#d4a84355;letter-spacing:.2em;margin-top:5px">DRAG TO ROTATE</div>
+</section>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+(function(){
+var R=new THREE.WebGLRenderer({canvas:document.getElementById('gc'),antialias:true,alpha:true});
+R.setSize(500,500);R.setPixelRatio(Math.min(devicePixelRatio,2));
+var S=new THREE.Scene(),C=new THREE.PerspectiveCamera(38,1,0.1,200);C.position.z=2.75;
+function mkE(){
+  var cv=document.createElement('canvas');cv.width=2048;cv.height=1024;
+  var cx=cv.getContext('2d'),W=2048,H=1024;
+  var id=cx.createImageData(W,H),d=id.data;
+  function h(x,y){return((Math.sin(x*127.1+y*311.7)*43758.5)%1+1)%1;}
+  function fbm(x,y){var v=0,a=0.5,f=1;for(var i=0;i<5;i++){v+=a*h(x*f,y*f);a*=0.5;f*=2.1;}return v;}
+  var polys={
+    na:[[-168,71],[-140,56],[-125,48],[-117,32],[-104,19],[-83,9],[-77,8],[-60,47],[-75,45],[-91,47],[-120,49],[-140,58],[-168,71]],
+    sa:[[-80,8],[-63,18],[-60,20],[-65,44],[-52,-33],[-40,-5],[-50,2],[-63,12],[-80,8]],
+    eu:[[-10,36],[40,36],[45,42],[55,24],[58,22],[44,8],[36,15],[32,31],[37,37],[0,36],[-8,36]],
+    af:[[37,37],[42,12],[44,8],[40,2],[28,-3],[33,-22],[26,-33],[14,-22],[2,7],[-8,22],[-2,35],[8,37],[37,37]],
+    as:[[25,72],[100,68],[140,68],[145,60],[115,20],[100,5],[110,-8],[80,10],[44,8],[45,42],[80,68],[140,68],[25,72]],
+    au:[[113,-22],[128,-14],[140,-18],[130,-32],[117,-35],[113,-22]]
+  };
+  function inP(px,py,poly){var inside=false;for(var i=0,j=poly.length-1;i<poly.length;j=i++){var xi=poly[i][0],yi=poly[i][1],xj=poly[j][0],yj=poly[j][1];if(((yi>py)!=(yj>py))&&(px<(xj-xi)*(py-yi)/(yj-yi)+xi))inside=!inside;}return inside;}
+  for(var py=0;py<H;py++){
+    var lat=90-(py/H)*180;
+    for(var px=0;px<W;px++){
+      var lon=(px/W)*360-180,fx=px/W,fy=py/H;
+      var n=fbm(fx*3,fy*3),n2=fbm(fx*7+.5,fy*7+.3);
+      var idx=(py*W+px)*4,aLat=Math.abs(lat),isL=false,bm='ocean';
+      for(var k in polys){if(inP(lon,lat,polys[k])){isL=true;bm=k;break;}}
+      var r,g,b;
+      if(isL){
+        if(aLat>70){r=200+n*40;g=210+n*35;b=220+n*25;}
+        else if(bm==='af'&&aLat>15){r=185+n*35;g=148+n*30;b=72+n2*22;}
+        else if(bm==='sa'||bm==='af'){r=22+n*15;g=90+n*38;b=20+n2*14;}
+        else{r=35+n*25;g=80+n*35;b=28+n2*18;}
+        if(n2>0.72){var f=((n2-0.72)/0.28)*.5;r=r*(1-f)+200*f;g=g*(1-f)+210*f;b=b*(1-f)+215*f;}
+      } else {
+        r=4+n*10;g=22+n*20;b=82+n*35;
+      }
+      d[idx]=Math.min(255,r|0);d[idx+1]=Math.min(255,g|0);d[idx+2]=Math.min(255,b|0);d[idx+3]=255;
+    }
+  }
+  cx.putImageData(id,0,0);
+  cx.strokeStyle='rgba(255,255,255,0.07)';cx.lineWidth=0.6;
+  function ll(lo,la){return[(lo+180)/360*W,(90-la)/180*H];}
+  for(var la=-80;la<=80;la+=20){cx.beginPath();for(var lo=-180;lo<=180;lo+=3){var p=ll(lo,la);lo===-180?cx.moveTo(p[0],p[1]):cx.lineTo(p[0],p[1]);}cx.stroke();}
+  [0,23.5,-23.5].forEach(function(la){cx.strokeStyle='rgba(255,255,255,0.15)';cx.lineWidth=0.9;cx.beginPath();for(var lo=-180;lo<=180;lo+=3){var p=ll(lo,la);lo===-180?cx.moveTo(p[0],p[1]):cx.lineTo(p[0],p[1]);}cx.stroke();});
+  var np=ll(79.08,21.15),g2=cx.createRadialGradient(np[0],np[1],0,np[0],np[1],30);
+  g2.addColorStop(0,'rgba(255,220,80,1)');g2.addColorStop(.4,'rgba(212,168,67,.6)');g2.addColorStop(1,'rgba(0,0,0,0)');
+  cx.fillStyle=g2;cx.beginPath();cx.arc(np[0],np[1],30,0,Math.PI*2);cx.fill();
+  cx.fillStyle='#fff8d0';cx.beginPath();cx.arc(np[0],np[1],6,0,Math.PI*2);cx.fill();
+  cx.fillStyle='#030508';cx.beginPath();cx.arc(np[0],np[1],2.5,0,Math.PI*2);cx.fill();
+  return new THREE.CanvasTexture(cv);
+}
+var geo=new THREE.SphereGeometry(1,96,64);
+var mat=new THREE.MeshPhongMaterial({map:mkE(),specular:new THREE.Color(.15,.3,.45),shininess:25});
+var globe=new THREE.Mesh(geo,mat);S.add(globe);
+S.add(new THREE.Mesh(new THREE.SphereGeometry(1.055,32,32),new THREE.MeshPhongMaterial({color:0x4488ff,transparent:true,opacity:.05,side:THREE.FrontSide})));
+var sun=new THREE.DirectionalLight(0xfff8e8,2.5);sun.position.set(5,1,3);S.add(sun);
+S.add(new THREE.AmbientLight(0x0a1a2a,.5));
+var sv=[];for(var i=0;i<800;i++){var r=18+Math.random()*10,t=Math.random()*Math.PI*2,p=Math.acos(2*Math.random()-1);sv.push(r*Math.sin(p)*Math.cos(t),r*Math.sin(p)*Math.sin(t),r*Math.cos(p));}
+var sg=new THREE.BufferGeometry();sg.setAttribute('position',new THREE.Float32BufferAttribute(sv,3));
+S.add(new THREE.Points(sg,new THREE.PointsMaterial({color:0xffffff,size:.025,transparent:true,opacity:.55})));
+globe.rotation.y=(-79.08+180)/360*Math.PI*2-Math.PI;
+var auto=true,spd=.8,drag=false,mpx=0,mpy=0,rx=globe.rotation.x,ry=globe.rotation.y,vx=0,vy=0;
+var cv2=document.getElementById('gc');
+cv2.addEventListener('mousedown',function(e){drag=true;mpx=e.clientX;mpy=e.clientY;vx=0;vy=0;});
+window.addEventListener('mouseup',function(){drag=false;});
+window.addEventListener('mousemove',function(e){if(!drag)return;vy=(e.clientX-mpx)*.005;vx=(e.clientY-mpy)*.005;rx+=vx;ry+=vy;mpx=e.clientX;mpy=e.clientY;globe.rotation.x=rx;globe.rotation.y=ry;});
+cv2.addEventListener('touchstart',function(e){drag=true;mpx=e.touches[0].clientX;mpy=e.touches[0].clientY;},{passive:true});
+window.addEventListener('touchend',function(){drag=false;});
+window.addEventListener('touchmove',function(e){if(!drag)return;vy=(e.touches[0].clientX-mpx)*.005;vx=(e.touches[0].clientY-mpy)*.005;rx+=vx;ry+=vy;mpx=e.touches[0].clientX;mpy=e.touches[0].clientY;globe.rotation.x=rx;globe.rotation.y=ry;},{passive:true});
+document.getElementById('gspd').addEventListener('input',function(e){spd=parseFloat(e.target.value);});
+window.gtog=function(){auto=!auto;};
+var sA=0,pl=0,sc=document.getElementById('gsc'),pu=document.getElementById('gpu');
+function draw(){
+  requestAnimationFrame(draw);
+  if(!drag&&auto){ry+=.0022*spd;globe.rotation.y=ry;}
+  else if(!drag){vx*=.93;vy*=.93;rx+=vx;ry+=vy;globe.rotation.x=rx;globe.rotation.y=ry;}
+  sA=(sA+.7)%360;sc.setAttribute('transform','rotate('+sA+',280,280)');
+  pl=(pl+.03)%1;pu.setAttribute('opacity',(Math.sin(pl*Math.PI)*.6).toFixed(2));
+  R.render(S,C);
+}
+draw();
+})();
+</script>
 </body>
 </html>
